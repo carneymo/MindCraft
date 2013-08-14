@@ -1,6 +1,6 @@
 name:       MindCraft
 main:       io.github.mindcraft.MindCraft
-version:    0.0.1
+version:    0.0.2
 commands:
     iddqd:
         description: God Mode.

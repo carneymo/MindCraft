@@ -31,24 +31,26 @@ public class MindCraftCommandExecutor implements CommandExecutor {
 	public boolean callCommand_iddqd(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender instanceof Player) {
 			
-			Player currentplayer = (Player)sender;
-		    World w = currentplayer.getWorld();
-		    String godmode = (String)plugin.metadata.getMetadata(currentplayer, "GODMODE", plugin);
+			Player player = (Player)sender;
+		    World w = player.getWorld();
+		    String godmode = (String)plugin.metadata.getMetadata(player, "GODMODE", plugin);
 		    
 		    if(godmode == null || godmode == "0") {
 		    	
-		    	currentplayer.setGameMode(GameMode.CREATIVE);
+		    	plugin.db.setMetadata(player, "GODMODE", "1");
+		    	player.setGameMode(GameMode.CREATIVE);
 		    	
-			    w.playSound(currentplayer.getLocation(), Sound.EXPLODE, 10, 1);
-		    	currentplayer.sendMessage("§6GOD MODE ACTIVATED");
-			    plugin.metadata.setMetadata(currentplayer, "GODMODE", (Object)"1", plugin);
+			    w.playSound(player.getLocation(), Sound.EXPLODE, 10, 1);
+			    player.sendMessage("§6GOD MODE ACTIVATED");
+			    plugin.metadata.setMetadata(player, "GODMODE", (Object)"1", plugin);
 		    } else if(godmode == "1") {
 
-		    	currentplayer.setGameMode(GameMode.SURVIVAL);
+		    	plugin.db.setMetadata(player, "GODMODE", "0");
+		    	player.setGameMode(GameMode.SURVIVAL);
 		    	
-			    w.playSound(currentplayer.getLocation(), Sound.HURT_FLESH, 10, 1);
-			    currentplayer.sendMessage("§cGOD MODE DEACTIVATED");
-			    plugin.metadata.setMetadata(currentplayer, "GODMODE", (Object)"0", plugin);
+			    w.playSound(player.getLocation(), Sound.HURT_FLESH, 10, 1);
+			    player.sendMessage("§cGOD MODE DEACTIVATED");
+			    plugin.metadata.setMetadata(player, "GODMODE", (Object)"0", plugin);
 		    }
 		    
 			return true;
