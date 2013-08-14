@@ -1,0 +1,8 @@
+name:       MindCraft
+main:       io.github.mindcraft.MindCraft
+version:    0.0.1
+commands:
+    iddqd:
+        description: God Mode.
+        permission: MindCraft.iddqd
+        permission-message: You don't have <permission>
